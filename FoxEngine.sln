@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31919.166
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FoxEngineLib", "FoxEngineLib\FoxEngineLib.csproj", "{8F7786D1-758E-45A1-9F32-E8914ACD18BC}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KitchenSink", "KitchenSink\KitchenSink.csproj", "{35492D15-D4F6-438D-970C-E4657D12EC86}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8F7786D1-758E-45A1-9F32-E8914ACD18BC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8F7786D1-758E-45A1-9F32-E8914ACD18BC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8F7786D1-758E-45A1-9F32-E8914ACD18BC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8F7786D1-758E-45A1-9F32-E8914ACD18BC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{35492D15-D4F6-438D-970C-E4657D12EC86}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{35492D15-D4F6-438D-970C-E4657D12EC86}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{35492D15-D4F6-438D-970C-E4657D12EC86}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{35492D15-D4F6-438D-970C-E4657D12EC86}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {CBF9271D-5D57-4005-83F9-957F1F499DE6}
+	EndGlobalSection
+EndGlobal

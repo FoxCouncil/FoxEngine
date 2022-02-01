@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "FoxEngineLib": {
+      "commandName": "Project",
+      "nativeDebugging": true
+    }
+  }
+}

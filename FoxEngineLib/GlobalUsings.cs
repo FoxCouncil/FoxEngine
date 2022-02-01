@@ -1,0 +1,13 @@
+﻿global using FoxEngineLib.Types;
+global using FoxEngineLib.Types.Audio;
+global using FoxEngineLib.Types.Drawing;
+global using FoxEngineLib.Types.Input;
+global using System.Diagnostics;
+global using System.Drawing;
+global using System.Runtime.InteropServices;
+global using GLint = System.Int32;
+global using GLsizei = System.Int32;
+global using GLfloat = System.Single;
+global using GLbitfield = System.UInt32;
+global using GLenum = System.UInt32;
+global using GLuint = System.UInt32;
