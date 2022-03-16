@@ -64,6 +64,9 @@ internal class WindowsInterop
     internal static extern IntPtr GetModuleHandle(string lpModuleName);
 
     [DllImport(DllUser32)]
+    internal static extern short GetKeyState(VK keyCode);
+
+    [DllImport(DllUser32)]
     internal static extern IntPtr GetDC(IntPtr hWnd);
 
     [DllImport(DllUser32)]
