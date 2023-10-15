@@ -1,33 +1,19 @@
 ﻿using FoxEngineLib.Components;
 using FoxEngineLib.Platform;
+using NAudio.Wave;
+using NAudio.Wave.SampleProviders;
 
 namespace FoxEngineLib;
 
 public abstract partial class FoxEngine
 {
-    static readonly object _lock = new();
-
-    static ulong _controlIndex;
-
-    readonly int[] _fpsAvgBuffer = new int[8];
-
-    readonly Thread _engineThread;
-
-    readonly AudioComponent _engineSound;
-
-    readonly Sprite _defaultDrawTarget;
-
-    readonly Sprite _fontSprite;
-
-    ulong _frameCount = 0;
-
-    public static readonly Point MOUSE_OUTSIDE = new(-1, -1);
-
     public static FoxEngine Instance { get; private set; }
 
-    public IPlatform Platform { get; }
+    public bool IsRunning { get; private set; }
 
     public string Name { get; }
+
+    public IPlatform Platform { get; }
 
     public Size Resolution { get; private set; }
 
@@ -37,27 +23,18 @@ public abstract partial class FoxEngine
 
     public int FramesPerSecond { get; private set; }
 
-    public bool IsRunning { get; private set; }
 
-    public bool IsHovered { get; internal set; }
+    static readonly object _lock = new();
 
-    public bool IsFocused { get; internal set; } = true;
+    static ulong _controlIndex;
 
-    public PixelMode PixelMode { get; set; } = PixelMode.NORMAL;
+    readonly int[] _fpsAvgBuffer = new int[8];
 
-    public Sprite DrawTarget { get; private set; }
+    readonly Thread _engineThread;
 
-    public static Dictionary<KeyboardButton, ControlButton> Keyboard = new();
+    readonly Sprite _defaultDrawTarget;
 
-    public static Dictionary<MouseButton, ControlButton> Mouse = new();
-
-    public static Point RealMousePosition;
-
-    public static Point MousePosition;
-
-    public uint AudioSampleFrequency { get; set; } = 44100;
-
-    public AudioChannel AudioChannels { get; set; } = AudioChannel.Mono;
+    readonly Sprite _fontSprite;
 
     public FoxEngine(int width = 640, int height = 480, int pixelMult = 2, string name = "Fox Engine")
     {
@@ -71,6 +48,8 @@ public abstract partial class FoxEngine
         {
             throw new NotImplementedException($"{RuntimeInformation.OSDescription} platform not yet supported.");
         }
+
+        InitializeAudioSystems();
 
         _fontSprite = GenerateFontSprite();
 
@@ -89,18 +68,14 @@ public abstract partial class FoxEngine
             Name = "FoxEngine.Thread"
         };
 
-        _engineSound = new AudioComponent();
-
         Resize(width * pixelMult, height * pixelMult);
     }
 
     public abstract void Create();
 
-    public abstract void Update(double frameTime);
+    public abstract void Update(double deltaTime);
 
     public abstract void Destroy();
-
-    public abstract double GenerateSample(uint channel, double time, double timeStep);
 
     public void Run()
     {
@@ -113,8 +88,6 @@ public abstract partial class FoxEngine
 
         _engineThread.Start();
 
-        _engineSound.Start(AudioSampleFrequency, AudioChannel.Mono);
-
         Platform.Run();
     }
 
@@ -125,9 +98,11 @@ public abstract partial class FoxEngine
         // User destroy method
         Destroy();
 
-        _engineThread.Join();
+        AudioOutEvent?.Stop();
 
-        _engineSound.Destroy();
+        AudioOutEvent?.Dispose();
+
+        _engineThread.Join();
 
         Platform.Dispose();
     }
@@ -172,14 +147,6 @@ public abstract partial class FoxEngine
             FramesPerSecond = Convert.ToInt32(_fpsAvgBuffer.Average());
 
             _frameCount++;
-        }
-    }
-
-    internal static ulong GetControlIndex()
-    {
-        lock (_lock)
-        {
-            return _controlIndex++;
         }
     }
 }

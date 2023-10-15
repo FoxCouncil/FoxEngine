@@ -19,8 +19,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Include="FoxEngine.Generators.cs" />
-    <None Include="FoxEngine.DrawRoutines.cs" />
+    <None Include="FoxEngine.Draw.cs" />
     <None Include="..\readme.md">
       <Pack>True</Pack>
       <PackagePath>\</PackagePath>
@@ -28,7 +27,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Silk.NET.OpenAL" Version="2.11.0" />
+    <PackageReference Include="NAudio" Version="2.2.1" />
   </ItemGroup>
 
 </Project>

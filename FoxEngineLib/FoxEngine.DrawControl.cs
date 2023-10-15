@@ -2,16 +2,13 @@
 
 public abstract partial class FoxEngine
 {
-    static void GenerateUserInput()
-    {
-        for (var keyIdx = 0; keyIdx < (int)KeyboardButton.MAX; keyIdx++)
-        {
-            Keyboard.Add((KeyboardButton)keyIdx, new ControlButton());
-        }
+    ulong _frameCount = 0;
 
-        for (var mbIdx = 0; mbIdx < (int)MouseButton.MAX; mbIdx++)
+    internal static ulong GetControlIndex()
+    {
+        lock (_lock)
         {
-            Mouse.Add((MouseButton)mbIdx, new ControlButton());
+            return _controlIndex++;
         }
     }
 

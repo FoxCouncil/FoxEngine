@@ -2,6 +2,10 @@
 
 public abstract partial class FoxEngine
 {
+    public PixelMode PixelMode { get; set; } = PixelMode.NORMAL;
+
+    public Sprite DrawTarget { get; private set; }
+
     public void Clear(Pixel clearColor)
     {
         if (DrawTarget != null)

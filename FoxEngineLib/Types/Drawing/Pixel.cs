@@ -21,15 +21,18 @@ public struct Pixel
         A = alpha;
     }
 
-    public static Pixel White = new Pixel(255, 255, 255);
-    public static Pixel Black = new Pixel(0, 0, 0);
+    public static Pixel White = new(255, 255, 255);
+    public static Pixel Black = new(0, 0, 0);
 
-    public static Pixel Red = new Pixel(255, 0, 0);
-    public static Pixel Green = new Pixel(0, 255, 0);
+    public static Pixel Red = new(255, 0, 0);
 
-    public static Pixel DarkBlue = new Pixel(2, 30, 45);
-    public static Pixel Blue = new Pixel(0, 0, 255);
-    public static Pixel LightBlue = new Pixel(200, 230, 255);
+    public static Pixel Yellow = new(255, 255, 0);
 
-    public static Pixel Blank = new Pixel(0, 0, 0, 0);
+    public static Pixel Green = new(0, 255, 0);
+
+    public static Pixel DarkBlue = new(2, 30, 45);
+    public static Pixel Blue = new(0, 0, 255);
+    public static Pixel LightBlue = new(200, 230, 255);
+
+    public static Pixel Blank = new(0, 0, 0, 0);
 }

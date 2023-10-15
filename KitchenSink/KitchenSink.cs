@@ -20,17 +20,17 @@ internal partial class KitchenSink : FoxEngine
         soundTest.OnClick += (s, e) => _gameState = GameState.Sound;
         _interface.Add(soundTest);
 
+
+        //CreateMainMenu();
+        //CreateControlTest();
+        CreateSoundTest();
+
         _gameState = GameState.MainMenu;
     }
 
     public override void Destroy()
     {
         // throw new NotImplementedException();
-    }
-
-    public override double GenerateSample(uint channel, double time, double timeStep)
-    {
-        return 0;
     }
 
     public override void Update(double frameTime)
@@ -40,7 +40,7 @@ internal partial class KitchenSink : FoxEngine
         DrawRectFilled(0, 0, OriginalResolution.Width, 20, Pixel.White);
         DrawRect(0, -1, OriginalResolution.Width, 20, Pixel.Black);
 
-        DrawString(OriginalResolution.Width - 50, 6, $"{FramesPerSecond} FPS", Pixel.Black);
+        DrawString(OriginalResolution.Width - 60, 6, $"{FramesPerSecond} FPS", Pixel.Black);
 
         DrawString(OriginalResolution.Width - 110, 6, "FOCUS", IsFocused ? Pixel.Black : Pixel.Red);
         DrawString(OriginalResolution.Width - 160, 6, "HOVER", IsHovered ? Pixel.Black : Pixel.Red);
