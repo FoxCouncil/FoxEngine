@@ -2,7 +2,7 @@
 
 public abstract partial class FoxEngine
 {
-    ulong _frameCount = 0;
+    static ulong _controlIndex;
 
     internal static ulong GetControlIndex()
     {

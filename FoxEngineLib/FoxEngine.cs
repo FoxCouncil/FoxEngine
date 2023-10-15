@@ -23,10 +23,11 @@ public abstract partial class FoxEngine
 
     public int FramesPerSecond { get; private set; }
 
+    public ulong Frames => _frameCount;
 
     static readonly object _lock = new();
 
-    static ulong _controlIndex;
+    ulong _frameCount = 0;
 
     readonly int[] _fpsAvgBuffer = new int[8];
 
@@ -138,7 +139,7 @@ public abstract partial class FoxEngine
 
             stopWatch = Stopwatch.StartNew();
 
-            Update(elapsedTime.TotalMilliseconds);
+            Update(elapsedTime.TotalSeconds);
 
             Platform.Draw();
 
